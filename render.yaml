@@ -1,0 +1,45 @@
+services:
+  - type: web
+    name: agriassist-ai-backend
+    env: python
+    plan: free
+    buildCommand: |
+      pip install --upgrade pip
+      pip install -r requirements.txt
+    startCommand: gunicorn backend.app:app
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: WEATHER_API_KEY
+        sync: false
+      - key: FLASK_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: SECRET_KEY
+        sync: false
+    autoDeploy: true
+    healthCheckPath: /api/health
+    buildFilter:
+      paths:
+        - backend/**
+        - requirements.txt
+        - .env
+        - .env.example
+        - render.yaml
+
+  - type: static
+    name: agriassist-ai-frontend
+    env: static
+    plan: free
+    buildCommand: ""
+    staticPublishPath: frontend/
+    autoDeploy: true
+    buildFilter:
+      paths:
+        - frontend/**
+
+# Notes:
+# - Add all your secret keys (GEMINI_API_KEY, WEATHER_API_KEY, SECRET_KEY) via Render dashboard, not in repo.
+# - The backend will be accessible at: https://agriassist-ai-backend.onrender.com
+# - Update API_BASE in your app.js frontend to point to your backend Render URL when deployed.
