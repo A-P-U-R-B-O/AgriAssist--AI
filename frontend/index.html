@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriAssist AI - Smart Farming Advisor</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                <h1>AgriAssist AI</h1>
+            </div>
+            <div class="lang-toggle">
+                <button id="langToggle" data-lang="en">
+                    <i class="fas fa-globe"></i> English
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2 class="hero-title">Your AI-Powered Farming Assistant</h2>
+            <p class="hero-subtitle">Upload crop photos, get instant disease diagnosis & expert advice</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="analyze">
+                <i class="fas fa-camera"></i> Analyze Crop
+            </button>
+            <button class="tab-btn" data-tab="chat">
+                <i class="fas fa-comments"></i> Ask Question
+            </button>
+            <button class="tab-btn" data-tab="tips">
+                <i class="fas fa-lightbulb"></i> Farming Tips
+            </button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- Analyze Tab -->
+            <div id="analyze" class="tab-pane active">
+                <div class="upload-section">
+                    <div class="upload-area" id="uploadArea">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Upload Crop Image</h3>
+                        <p>Click or drag & drop your photo here</p>
+                        <input type="file" id="imageInput" accept="image/*" hidden>
+                    </div>
+                    
+                    <div id="imagePreview" class="image-preview" style="display: none;">
+                        <img id="previewImg" src="" alt="Preview">
+                        <button id="removeImage" class="btn-secondary">
+                            <i class="fas fa-times"></i> Remove
+                        </button>
+                    </div>
+
+                    <div class="location-input">
+                        <label for="location">
+                            <i class="fas fa-map-marker-alt"></i> Your Location (Optional)
+                        </label>
+                        <input type="text" id="location" placeholder="e.g., Nairobi, Kisumu, Mombasa">
+                    </div>
+
+                    <button id="analyzeBtn" class="btn-primary" disabled>
+                        <i class="fas fa-search"></i> Analyze Crop
+                    </button>
+                </div>
+
+                <!-- Results -->
+                <div id="analysisResults" class="results-section" style="display: none;">
+                    <h3><i class="fas fa-clipboard-check"></i> Analysis Results</h3>
+                    <div id="resultsContent" class="results-content"></div>
+                </div>
+            </div>
+
+            <!-- Chat Tab -->
+            <div id="chat" class="tab-pane">
+                <div class="chat-container">
+                    <div id="chatMessages" class="chat-messages">
+                        <div class="message bot-message">
+                            <i class="fas fa-robot"></i>
+                            <div class="message-content">
+                                <p>Hello! I'm AgriAssist AI. Ask me anything about farming, crops, diseases, or best practices. How can I help you today?</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-input-container">
+                        <input type="text" id="chatInput" placeholder="Ask your farming question...">
+                        <button id="sendBtn" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tips Tab -->
+            <div id="tips" class="tab-pane">
+                <div class="tips-selection">
+                    <div class="input-group">
+                        <label for="cropSelect">Select Crop</label>
+                        <select id="cropSelect">
+                            <option value="maize">Maize (Corn)</option>
+                            <option value="beans">Beans</option>
+                            <option value="potatoes">Potatoes</option>
+                            <option value="tomatoes">Tomatoes</option>
+                            <option value="kale">Kale (Sukuma Wiki)</option>
+                            <option value="tea">Tea</option>
+                            <option value="coffee">Coffee</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="seasonSelect">Season</label>
+                        <select id="seasonSelect">
+                            <option value="current">Current Season</option>
+                            <option value="rainy">Rainy Season</option>
+                            <option value="dry">Dry Season</option>
+                        </select>
+                    </div>
+
+                    <button id="getTipsBtn" class="btn-primary">
+                        <i class="fas fa-lightbulb"></i> Get Tips
+                    </button>
+                </div>
+
+                <div id="tipsResults" class="tips-results" style="display: none;">
+                    <h3>Farming Tips</h3>
+                    <div id="tipsContent"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="spinner"></div>
+        <p>Analyzing with AI...</p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Built with ❤️ for Strathspace Hack Day | Powered by Google Gemini API</p>
+            <p>© 2025 AgriAssist AI | <a href="https://github.com/A-P-U-R-B-O/agriassist-ai" target="_blank">
+                <i class="fab fa-github"></i> GitHub
+            </a></p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+              </html>
